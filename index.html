@@ -1,0 +1,128 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Yousuf Mallik</title>
+    <meta name="description" content="heyy, this is my personal space on the internet.">
+    <meta name="viewport" content="width=480; user-scalable=yes;" />
+    <meta property="og:image" content="assets/maincover.png" />
+    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="icon" href="assets/yousufmalliklogo.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="assets/yousufmalliklogo.png" />
+</head>
+
+<body>
+    <div class="mac-desktop">
+        <div class="mac-window">
+            <div class="window-header">
+                <div class="window-controls">
+                    <!-- have to add controls to those 3 -->
+                    <span class="control close"></span> 
+                    <span class="control minimize"></span>
+                    <span class="control maximize"></span>
+                </div>
+                <span class="window-title">Yousuf Mallik</span>
+                <span class="window-version" onclick="window.location.href=''">
+                    v1.0
+                    <span class="tooltip">Click to see my story</span>
+                </span>
+            </div>
+            <div class="window-tabs">
+                <button class="tab active" onclick="showTab('profile')">Profile</button>
+                <!-- have to add those 4 work div -->
+                <button class="tab" onclick="showTab('')">Leadership</button>
+                <button class="tab" onclick="showTab('')">Hackathons</button>
+                <button class="tab" onclick="showTab('')">competitive Programming</button>
+                <button class="tab" onclick="showTab('')">Fun Zone</button>
+            </div>
+            <main class='window-content'>
+                <div id="profile-tab" class="tab-content active">
+                    <div class="profile-header">
+                    <div class="profile-photo-container">
+                        <img src="media/profilepicture.jpg" alt="Yousuf Mallik" class="profile-photo">
+                    </div>
+                    <div class="profile-text">
+                        <h1 class="name">Yousuf Mallik</h1>
+                        <p class="tagline">Building cool stuff on the internet</p>
+                        <p class="age"><span id="age">19</span> years old • Kolkata, India</p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-box">
+                        <h3>Currently Building</h3>
+                        <p><a href="https://www.forgeyklabs.tech" target="_blank">Forgeyk Labs</a></p>
+                        <p class="sub">Multi Batch Powerhouse</p>
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <h3>Connect</h3>
+                    <div class="button-group">
+                        <a href="https://instagram.com/wannabetechnerd" target="_blank" class="mac-button">Instagram</a>
+                        <a href="https://x.com/Yousuf2049" target="_blank" class="mac-button">X</a>
+                        <a href="mailto:yousuf.mallik79@gmail.com" class="mac-button">Email</a>
+                        <a href="https://youtube.com/@wannabetechnerd" target="_blank" class="mac-button">YouTube</a>
+                        <a href="https://linkedin.com/in/yousuf-mallik" target="_blank" class="mac-button">LinkedIn</a>
+                    </div>
+                </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+
+    <script src="scripts/script.js" async defer></script>
+    <script>
+        // Create audio context and sound functions
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(frequency, duration, type = 'square') {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        const sounds = {
+            shoot: () => playSound(600, 0.1),
+            hit: () => playSound(200, 0.2, 'sawtooth'),
+            gameOver: () => {
+                playSound(150, 0.3);
+                setTimeout(() => playSound(100, 0.4), 300);
+            }
+        };
+
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

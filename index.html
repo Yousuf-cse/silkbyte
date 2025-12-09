@@ -31,10 +31,10 @@
             <div class="window-tabs">
                 <button class="tab active" onclick="showTab('profile')">Profile</button>
                 <!-- have to add those 4 work div -->
-                <button class="tab" onclick="showTab('')">Leadership</button>
-                <button class="tab" onclick="showTab('')">Hackathons</button>
-                <button class="tab" onclick="showTab('')">competitive Programming</button>
-                <button class="tab" onclick="showTab('')">Fun Zone</button>
+                <button class="tab" onclick="showTab('hackathons')">Hackathons</button>
+                <button class="tab" onclick="showTab('leadership')">Leadership</button>
+                <button class="tab" onclick="showTab('competitive-Programming')">competitive Programming</button>
+                <button class="tab" onclick="showTab('games')">Fun Zone</button>
             </div>
             <main class='window-content'>
                 <div id="profile-tab" class="tab-content active">
@@ -68,6 +68,80 @@
                     </div>
                 </div>
                 </div>
+
+                <div id="hackathons-tab" class="tab-content">
+                    <div class="hackathon-queue">
+                        <div class="hackathon-item" onclick="openHackathonModal('binary2k25')">
+                            <div class="hackathon-item-content">
+                                <span class="hackathon-item-name">Binary 2k25</span>
+                                <span class="hackathon-item-position">Track Winner</span>
+                            </div>
+                        </div>
+
+                        <div class="hackathon-item" onclick="openHackathonModal('hexafalls')">
+                            <div class="hackathon-item-content">
+                                <span class="hackathon-item-name">HexaFalls</span>
+                                <span class="hackathon-item-position">Finalists</span>
+                            </div>
+                        </div>
+
+                        <div class="hackathon-item" onclick="openHackathonModal('status-code-2')">
+                            <div class="hackathon-item-content">
+                                <span class="hackathon-item-name">Status Code 2</span>
+                                <span class="hackathon-item-position">Finalists</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    
+                    <div id="hackathon-modal" class="hackathon-modal">
+                        <div class="hackathon-modal-content">
+                            <canvas id="modal-effect-canvas" class="modal-effect-canvas" aria-hidden="true"></canvas>
+                            <div class="hackathon-modal-header">
+                                <a href="#" id="hackathon-modal-title-link" target="_blank" rel="noopener noreferrer">
+                                    <h2 id="hackathon-modal-title">Hackathon Name</h2>
+                                </a>
+                                <button class="hackathon-modal-close" onclick="closeHackathonModal()">✕</button>
+                            </div>
+                            <div class="hackathon-modal-body">
+                                <div class="hackathon-modal-position" id="hackathon-modal-position">Position</div>
+                                <div class="hackathon-modal-section">
+                                    <h3>About</h3>
+                                    <p id="hackathon-modal-description">Description goes here</p>
+                                </div>
+                               
+                                <div class="hackathon-modal-section">
+                                    <h3>Project</h3>
+                                    <p id="hackathon-modal-project">-</p>
+                                </div>
+                                <div class="hackathon-modal-section">
+                                    <a href="#" id="hackathon-modal-link" target="_blank" class="mac-button">Visit Project →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div id="leadership-tab" class="tab-content">
+                    <div class="folder-view">
+                        <div class="folder-item">
+                            <div class="folder-icon game-icon"></div>
+                            <p class="folder-name"> </p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div id="competitive-Programming-tab" class="tab-content">
+                    <div class="folder-view">
+                        <div class="folder-item">
+                            <div class="folder-icon game-icon"></div>
+                            <p class="folder-name"></p>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
     </div>
@@ -77,7 +151,212 @@
 
     <script src="scripts/script.js" async defer></script>
     <script>
-        // Create audio context and sound functions
+        
+        const hackathonData = {
+            'binary2k25': {
+                title: 'Binary 2k25',
+                position: 'Track Winner',
+                website: 'https://www.binary.kgec.tech/',
+                description: 'A 36-hour hackathon focused on innovative coding solutions and creative problem-solving.',
+                project: 'Developed a npm package for react applications to automate Pre-localized translations',
+                link: 'https://github.com/wraptalk/wraptalk'
+            },
+            'hexafalls': {
+                title: 'hexafalls 2k25',
+                position: 'Finalists',
+                website: 'https://www.hexafalls.tech/',
+                description: 'A 36-hour hackathon focused on innovative coding solutions and creative problem-solving.',
+                project: 'Developed a privacy-first Chrome extension that optimizes AI prompts locally to save tokens, reduce costs, and lower environmental impact',
+                link: 'https://github.com/Yousuf-cse/TokenFlow'
+            },
+            'status-code-2': {
+                title: 'Status Code 2',
+                position: 'Finalists',
+                website: 'https://hackathon.iiitkalyani.ac.in/',
+                description: 'A 36-hour hackathon focused on innovative coding solutions and creative problem-solving.',
+                project: 'Build a platform that lets students connect and create their own hacker houses in their city',
+                link: 'https://github.com/Yousuf-cse/The-Hacker-Network'
+            }
+            
+        };
+
+        // func for Open hackathon modal
+        function openHackathonModal(hackathonId) {
+            const data = hackathonData[hackathonId];
+            if (data) {
+                document.getElementById('hackathon-modal-title').textContent = data.title;
+                document.getElementById('hackathon-modal-title-link').href = data.website || '#';
+                document.getElementById('hackathon-modal-position').textContent = data.position;
+                document.getElementById('hackathon-modal-description').textContent = data.description;
+                document.getElementById('hackathon-modal-project').textContent = data.project;
+                document.getElementById('hackathon-modal-link').href = data.link;
+                document.getElementById('hackathon-modal').classList.add('active');
+                
+                function isWinner(position) {
+                    if (!position) return false;
+                    const s = String(position).toLowerCase();
+                    return /win|winner|1st|first\s*place|first|track\s*winner/.test(s);
+                }
+
+                if (isWinner(data.position)) {
+                    startModalEffect();
+                    
+                    if (modalEffect.stopTimeout) clearTimeout(modalEffect.stopTimeout);
+                    modalEffect.stopTimeout = setTimeout(() => {
+                        stopModalEffect();
+                    }, 3500);
+                } else {
+                    stopModalEffect();
+                }
+            }
+        }
+
+        
+        function closeHackathonModal() {
+            document.getElementById('hackathon-modal').classList.remove('active');
+            stopModalEffect();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('hackathon-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeHackathonModal();
+                    }
+                });
+            }
+        });
+
+        
+        const modalEffect = {
+            canvas: null,
+            ctx: null,
+            particles: [],
+            running: false,
+            animId: null,
+            spawnInterval: null,
+            stopTimeout: null,
+            spawning: false,
+            stopping: false
+        };
+
+        function initModalCanvas() {
+            if (modalEffect.canvas) return;
+            modalEffect.canvas = document.getElementById('modal-effect-canvas');
+            if (!modalEffect.canvas) return;
+            modalEffect.ctx = modalEffect.canvas.getContext('2d');
+            resizeModalCanvas();
+            window.addEventListener('resize', resizeModalCanvas);
+        }
+
+        function resizeModalCanvas() {
+            const content = document.querySelector('.hackathon-modal-content');
+            if (!modalEffect.canvas || !content) return;
+            const rect = content.getBoundingClientRect();
+            modalEffect.canvas.width = Math.max(1, Math.floor(rect.width));
+            modalEffect.canvas.height = Math.max(1, Math.floor(rect.height));
+            modalEffect.canvas.style.width = rect.width + 'px';
+            modalEffect.canvas.style.height = rect.height + 'px';
+        }
+
+        function spawnParticle() {
+            if (!modalEffect.canvas) return;
+            const w = modalEffect.canvas.width;
+            const h = modalEffect.canvas.height;
+            const x = Math.random() * (w * 0.6) + w * 0.2;
+            const y = Math.random() * 20 - 10;
+            const vx = (Math.random() - 0.5) * 2.4;
+            const vy = Math.random() * 1.6 + 0.6;
+            const size = Math.floor(Math.random() * 8) + 6;
+            const colors = ['#000000', '#c0c0c0', '#ffffff', '#808080', '#333333'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            modalEffect.particles.push({ x, y, vx, vy, size, color, ttl: Math.floor(Math.random() * 80) + 60, rot: Math.random() * Math.PI * 2, vr: (Math.random() - 0.5) * 0.2, alpha: 1 });
+        }
+
+        function updateParticles() {
+            for (let i = modalEffect.particles.length - 1; i >= 0; i--) {
+                const p = modalEffect.particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.03;
+                p.rot += p.vr;
+                p.ttl--;
+                p.alpha = Math.max(0, p.ttl / 120);
+                if (p.y > modalEffect.canvas.height + 60 || p.ttl <= 0) {
+                    modalEffect.particles.splice(i, 1);
+                }
+            }
+        }
+
+        function drawParticles() {
+            if (!modalEffect.ctx) return;
+            const ctx = modalEffect.ctx;
+            ctx.clearRect(0, 0, modalEffect.canvas.width, modalEffect.canvas.height);
+            modalEffect.particles.forEach(p => {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot);
+                ctx.globalAlpha = p.alpha * 0.95;
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+            });
+        }
+
+        function loopModalEffect() {
+            if (!modalEffect.running && modalEffect.particles.length === 0) return;
+            updateParticles();
+            drawParticles();
+
+            if (modalEffect.stopping && modalEffect.particles.length === 0) {
+                modalEffect.stopping = false;
+                modalEffect.running = false;
+                if (modalEffect.animId) cancelAnimationFrame(modalEffect.animId);
+                modalEffect.animId = null;
+                return;
+            }
+
+            modalEffect.animId = requestAnimationFrame(loopModalEffect);
+        }
+
+        function startModalEffect() {
+            initModalCanvas();
+            if (!modalEffect.canvas) return;
+            modalEffect.running = true;
+            modalEffect.stopping = false;
+            modalEffect.spawning = true;
+            modalEffect.particles.length = 0;
+            if (modalEffect.spawnInterval) clearInterval(modalEffect.spawnInterval);
+            modalEffect.spawnInterval = setInterval(() => {
+                if (!modalEffect.spawning) return;
+                for (let i = 0; i < 3; i++) spawnParticle();
+            }, 100);
+            if (modalEffect.animId) cancelAnimationFrame(modalEffect.animId);
+            modalEffect.animId = requestAnimationFrame(loopModalEffect);
+        }
+
+        function stopModalEffect() {
+            modalEffect.spawning = false;
+            modalEffect.stopping = true;
+
+            if (modalEffect.spawnInterval) {
+                clearInterval(modalEffect.spawnInterval);
+                modalEffect.spawnInterval = null;
+            }
+
+            if (modalEffect.stopTimeout) {
+                clearTimeout(modalEffect.stopTimeout);
+                modalEffect.stopTimeout = null;
+            }
+
+            if (!modalEffect.running && modalEffect.particles.length > 0) {
+                modalEffect.running = true;
+                if (modalEffect.animId) cancelAnimationFrame(modalEffect.animId);
+                modalEffect.animId = requestAnimationFrame(loopModalEffect);
+            }
+        }
+
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         
         function playSound(frequency, duration, type = 'square') {

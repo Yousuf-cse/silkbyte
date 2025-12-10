@@ -70,25 +70,53 @@
                 </div>
 
                 <div id="hackathons-tab" class="tab-content">
+                    <div class="section-header">
+                        <h2>Hackathons</h2>
+                    </div>
+                    <!-- hackathon stats -->
+
+                    <!-- <div class="hackathon-stats-section">
+                        <div class="stat-box">
+                            <div class="stat-label">Total Hackathons</div>
+                            <div class="stat-value">3</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Wins & Prizes</div>
+                            <div class="stat-value">1</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Finalist</div>
+                            <div class="stat-value">2</div>
+                        </div>
+                    </div> -->
                     <div class="hackathon-queue">
                         <div class="hackathon-item" onclick="openHackathonModal('binary2k25')">
                             <div class="hackathon-item-content">
-                                <span class="hackathon-item-name">Binary 2k25</span>
-                                <span class="hackathon-item-position">Track Winner</span>
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">Binary 2k25</span>
+                                    <span class="hackathon-item-date">2025</span>
+                                </div>
+                                <span class="hackathon-item-position winner">Track Winner</span>
                             </div>
                         </div>
 
                         <div class="hackathon-item" onclick="openHackathonModal('hexafalls')">
                             <div class="hackathon-item-content">
-                                <span class="hackathon-item-name">HexaFalls</span>
-                                <span class="hackathon-item-position">Finalists</span>
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">HexaFalls</span>
+                                    <span class="hackathon-item-date">2025</span>
+                                </div>
+                                <span class="hackathon-item-position finalist">Finalists</span>
                             </div>
                         </div>
 
                         <div class="hackathon-item" onclick="openHackathonModal('status-code-2')">
                             <div class="hackathon-item-content">
-                                <span class="hackathon-item-name">Status Code 2</span>
-                                <span class="hackathon-item-position">Finalists</span>
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">Status Code 2</span>
+                                    <span class="hackathon-item-date">2025</span>
+                                </div>
+                                <span class="hackathon-item-position finalist">Finalists</span>
                             </div>
                         </div>
 
@@ -124,24 +152,153 @@
                     </div>
                 </div>
 
+
+                <!-- leadership tab -->
+
                  <div id="leadership-tab" class="tab-content">
-                    <div class="folder-view">
-                        <div class="folder-item">
-                            <div class="folder-icon game-icon"></div>
-                            <p class="folder-name"> </p>
+                    <div class="section-header">
+                        <h2>Leadership</h2>
+                    </div>
+                    <div class="leadership-stats-section">
+                        <div class="stat-box">
+                            <div class="stat-label">Served communities</div>
+                            <div class="stat-value">4+</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Members Mentored</div>
+                            <div class="stat-value">300+</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Events Organized</div>
+                            <div class="stat-value">6+</div>
+                        </div>
+                    </div>
+                    <div class="hackathon-queue">
+                        <div class="hackathon-item"  onclick="openCommunityModal('techtribe')">
+                            <div class="hackathon-item-content">
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">TechTribe</span>
+                                    <span class="hackathon-item-date">Founder</span>
+                                </div>
+                                <span class="hackathon-item-position leader">Community Lead</span>
+                            </div>
+                        </div>
+                         <div class="hackathon-item"  onclick="openCommunityModal('Devians')">
+                            <div class="hackathon-item-content">
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">Devians</span>
+                                    <span class="hackathon-item-date">Convenor</span>
+                                </div>
+                                <span class="hackathon-item-position leader">Convenor</span>
+                            </div>
+                        </div>
+                         <div class="hackathon-item"  onclick="openCommunityModal('cst-Portal')">
+                            <div class="hackathon-item-content">
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">CST Portal</span>
+                                    <span class="hackathon-item-date">Co Lead</span>
+                                </div>
+                                <span class="hackathon-item-position leader">Co Lead</span>
+                            </div>
+                        </div>
+                         <!-- <div class="hackathon-item"  onclick="openCommunityModal('club-404')">
+                            <div class="hackathon-item-content">
+                                <div class="hackathon-item-text">
+                                    <span class="hackathon-item-name">club 404</span>
+                                    <span class="hackathon-item-date"></span>
+                                </div>
+                                <span class="hackathon-item-position leader"></span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Community Modal -->
+                <div id="community-modal" class="hackathon-modal">
+                    <div class="hackathon-modal-content">
+                        <canvas id="community-modal-effect-canvas" class="modal-effect-canvas" aria-hidden="true"></canvas>
+                        <div class="hackathon-modal-header">
+                            <a href="#" id="community-modal-title-link" target="_blank" rel="noopener noreferrer">
+                                <h2 id="community-modal-title">Community Name</h2>
+                            </a>
+                            <button class="hackathon-modal-close" onclick="closeCommunityModal()">✕</button>
+                        </div>
+                        <div class="hackathon-modal-body">
+                            <div class="hackathon-modal-position" id="community-modal-position">Position</div>
+                            <div class="hackathon-modal-section">
+                                <h3>About</h3>
+                                <p id="community-modal-description">Description goes here</p>
+                            </div>
+                           
+                            <div class="hackathon-modal-section">
+                                <h3>Community</h3>
+                                <p id="community-modal-project">-</p>
+                            </div>
+                            <div class="hackathon-modal-section">
+                                <a href="#" id="community-modal-link" target="_blank" class="mac-button">Visit website →</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                 <div id="competitive-Programming-tab" class="tab-content">
-                    <div class="folder-view">
-                        <div class="folder-item">
-                            <div class="folder-icon game-icon"></div>
-                            <p class="folder-name"></p>
+                
+                <div id="competitive-Programming-tab" class="tab-content">
+                    <div class="cp-section-container">
+                        
+                        <div class="cp-profiles-section">
+                            <h3 class="cp-section-title">Profiles</h3>
+                            <div class="cp-profile-buttons">
+                                <a href="" target="_blank" class="cp-profile-btn cp-leetcode">LeetCode</a>
+                                <a href="" target="_blank" class="cp-profile-btn cp-hackerrank">HackerRank</a>
+                                <a href="" target="_blank" class="cp-profile-btn cp-codeforces">Codeforces</a>
+                                <a href="" target="_blank" class="cp-profile-btn cp-codechef">CodeChef</a>
+                            </div>
+                        </div>
+
+                        
+                        <div class="cp-competitions-section">
+                            <h3 class="cp-section-title">Competitions</h3>
+                            <div class="hackathon-queue">
+                                <div class="hackathon-item" onclick="openCPModal('code-O-lympics')">
+                                    <div class="hackathon-item-content">
+                                        <span class="hackathon-item-name">Code-O-lympics</span>
+                                        <span class="hackathon-item-position">Finalists</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <div id="games-tab" class="tab-content">
+                    <div class="cp-profiles-section games-coming-soon">
+                        <h3 class="cp-section-title">Fun Zone</h3>
+                        <div class="coming-soon-panel">
+                            <div class="coming-title">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CP Modal -->
+                <div id="cp-modal" class="hackathon-modal">
+                    <div class="hackathon-modal-content">
+                        <div class="hackathon-modal-header">
+                            <h2 id="cp-modal-title">Competition Name</h2>
+                            <button class="hackathon-modal-close" onclick="closeCPModal()">✕</button>
+                        </div>
+                        <div class="hackathon-modal-body">
+                            <div class="hackathon-modal-position" id="cp-modal-rank">Rank</div>
+                            <div class="hackathon-modal-section">
+                                <h3>Details</h3>
+                                <p id="cp-modal-description">Description goes here</p>
+                            </div>
+                            <div class="hackathon-modal-section">
+                                <a href="#" id="cp-modal-link" target="_blank" class="mac-button">View Contest →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
@@ -176,8 +333,7 @@
                 description: 'A 36-hour hackathon focused on innovative coding solutions and creative problem-solving.',
                 project: 'Build a platform that lets students connect and create their own hacker houses in their city',
                 link: 'https://github.com/Yousuf-cse/The-Hacker-Network'
-            }
-            
+            },
         };
 
         // func for Open hackathon modal
@@ -227,6 +383,130 @@
                 });
             }
         });
+
+        
+        const CPData = {
+            'code-O-lympics': {
+                title: 'code-O-lympics || iiit-bhu',
+                rank: 'Finalists',
+                date: 'November 8, 2025',
+                description: 'Code-O-lympics is a two-round team-based competitive programming event conducted by IIIT Bhubaneswar, featuring an online qualifier and an offline finale.',
+                link: 'https://unstop.com/hackathons/code-o-lympics-d3-tech-fest-iiit-bhubaneswar-international-institute-of-information-technology-iiit-bhubanesw-1563853'
+            }
+            
+        };
+
+        function openCPModal(cpId) {
+            const data = CPData[cpId];
+            if (data) {
+                document.getElementById('cp-modal-title').textContent = data.title;
+                document.getElementById('cp-modal-rank').textContent = data.rank;
+                document.getElementById('cp-modal-description').textContent = data.description;
+                document.getElementById('cp-modal-link').href = data.link || '#';
+                document.getElementById('cp-modal').classList.add('active');
+            }
+        }
+
+        function closeCPModal() {
+            document.getElementById('cp-modal').classList.remove('active');
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('cp-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeCPModal();
+                    }
+                });
+            }
+        });
+
+        // test
+
+        const CommunityData = {
+            'techtribe': {
+                title: 'TechTribe',
+                position: 'Founder & Community Lead',
+                website: '',
+                description: 'A vibrant community/club under ICV Polytechnic for tech enthusiasts, dedicated to innovation and collaboration',
+                project: 'Building a developer network on campus to share knowledge, collaborate on open-source projects, support newcomers, and organize tech events and hackathons.',
+                link: 'https://github.com/techtribe'
+            },
+            'Devians': {
+                title: 'Devians',
+                position: 'convenor',
+                website: '',
+                description: 'A vibrant community of tech enthusiasts dedicated to innovation and collaboration.',
+                project: 'Building a network for developers to share knowledge and collaborate on open-source projects',
+                link: ''
+            },
+            'cst-Portal': {
+                title: 'CST Portal',
+                position: 'Co-Lead',
+                website: '',
+                description: 'A vibrant community of diploma computer science students in West Bengal.',
+                project: 'Building a network among computer science students in West Bengal to share knowledge and collaborate on projects.',
+                link: ''
+            },
+            'club-404 | powered by AU CSE': {
+                title: 'club 404 | powered by AU CSE',
+                position: '',
+                website: '',
+                description: 'A vibrant community of tech enthusiasts dedicated to innovation and collaboration.',
+                project: 'Building a network for developers to share knowledge and collaborate on open-source projects',
+                link: ''
+            }
+        };
+
+        function openCommunityModal(communityId) {
+            const data = CommunityData[communityId];
+            if (data) {
+                document.getElementById('community-modal-title').textContent = data.title;
+                document.getElementById('community-modal-title-link').href = data.website || '#';
+                document.getElementById('community-modal-position').textContent = data.position;
+                document.getElementById('community-modal-description').textContent = data.description;
+                document.getElementById('community-modal-project').textContent = data.project;
+                document.getElementById('community-modal-link').href = data.link;
+                document.getElementById('community-modal').classList.add('active');
+            }
+        }
+
+        function closeCommunityModal() {
+            document.getElementById('community-modal').classList.remove('active');
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('community-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeCommunityModal();
+                    }
+                });
+            }
+        });
+
+        
+        function closeHackathonModal() {
+            document.getElementById('hackathon-modal').classList.remove('active');
+            stopModalEffect();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('hackathon-modal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeHackathonModal();
+                    }
+                });
+            }
+        });
+
+
 
         
         const modalEffect = {

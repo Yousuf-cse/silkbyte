@@ -998,15 +998,15 @@ a:hover {
 }
 
 .terminal-control.red {
-  background: #ff6b6b;
+  background: #fffff8;
 }
 
 .terminal-control.yellow {
-  background: #ffd93d;
+  background: #fffff8;
 }
 
 .terminal-control.green {
-  background: #6bcf7f;
+  background: #fffff8;
 }
 
 .terminal-title {

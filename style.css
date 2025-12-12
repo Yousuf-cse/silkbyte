@@ -939,27 +939,132 @@ a:hover {
 }
 
 
-.coming-soon-panel {
-  padding: 18px;
-  background: #ffffff;
-  border: 2px solid #000000;
-  box-shadow: 
-    2px 2px 0 #000000,
-    inset -1px -1px 0 #808080,
-    inset 1px 1px 0 #dfdfdf;
-  text-align: center;
+.fun-zone-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.coming-title {
-  font-size: 16px;
+.fun-zone-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.fun-zone-header h2 {
+  font-size: 20px;
   font-weight: bold;
   color: #000000;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
-.coming-sub {
-  font-size: 11px;
+.fun-zone-subtitle {
+  font-size: 12px;
   color: #666666;
+  font-style: italic;
+}
+
+.fun-zone-terminal {
+  background: #ffffff;
+  border: 2px solid #000000;
+  box-shadow:
+    3px 3px 0 #000000,
+    inset -1px -1px 0 #808080,
+    inset 1px 1px 0 #dfdfdf;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: #c0c0c0;
+  border-bottom: 2px solid #000000;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #000000;
+}
+
+.terminal-control.red {
+  background: #ff6b6b;
+}
+
+.terminal-control.yellow {
+  background: #ffd93d;
+}
+
+.terminal-control.green {
+  background: #6bcf7f;
+}
+
+.terminal-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000000;
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-body {
+  padding: 16px;
+  background: #000000;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.terminal-text {
+  margin-bottom: 8px;
+}
+
+.terminal-prompt {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.terminal-output {
+  margin-left: 16px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.terminal-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.fun-zone-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.fun-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 13px;
+}
+
+.button-icon {
+  font-size: 16px;
 }
 
 
